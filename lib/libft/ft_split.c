@@ -6,14 +6,15 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 19:28:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/10/29 18:22:14 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:21:54 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <stddef.h>
 #include <stdlib.h>
 
-static unsigned int	ft_count_words(const char *s, char c)
+static unsigned int	ft_count_words(const char *s, char *set)
 {
 	unsigned int	count;
 	int				in_word;
@@ -22,12 +23,12 @@ static unsigned int	ft_count_words(const char *s, char c)
 	in_word = 0;
 	while (*s)
 	{
-		if (*s != c && !in_word)
+		if (!ft_strchr(set, *s) && !in_word)
 		{
 			count++;
 			in_word = 1;
 		}
-		else if (*s == c)
+		else if (ft_strchr(set, *s))
 			in_word = 0;
 		s++;
 	}
@@ -52,7 +53,7 @@ static char	*ft_alloc_word(const char *start, size_t len)
 	return (word);
 }
 
-static void	ft_free_split(char **split, int i)
+static void	int_free_split(char **split, int i)
 {
 	while (i >= 0)
 	{
@@ -62,7 +63,7 @@ static void	ft_free_split(char **split, int i)
 	free(split);
 }
 
-static char	**ft_fill_split(char **split, const char *s, char c)
+static char	**ft_fill_split(char **split, const char *s, char *set)
 {
 	size_t	len;
 	int		i;
@@ -70,17 +71,17 @@ static char	**ft_fill_split(char **split, const char *s, char c)
 	i = 0;
 	while (*s)
 	{
-		while (*s && *s == c)
+		while (*s && ft_strchr(set, *s))
 			s++;
 		if (!*s)
 			break ;
 		len = 0;
-		while (s[len] && s[len] != c)
+		while (s[len] && !ft_strchr(set, s[len]))
 			len++;
 		split[i] = ft_alloc_word(s, len);
 		if (!split[i])
 		{
-			ft_free_split(split, i - 1);
+			int_free_split(split, i - 1);
 			return (NULL);
 		}
 		i++;
@@ -90,16 +91,16 @@ static char	**ft_fill_split(char **split, const char *s, char c)
 	return (split);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(const char *s, char *set)
 {
 	unsigned int	n_words;
 	char			**split;
 
 	if (!s)
 		return (NULL);
-	n_words = ft_count_words(s, c);
+	n_words = ft_count_words(s, set);
 	split = (char **)malloc((n_words + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);
-	return (ft_fill_split(split, s, c));
+	return (ft_fill_split(split, s, set));
 }

@@ -1,0 +1,9 @@
+CompileFlags:
+  Add:
+    - "-I/home/joaopedrorodrigues/42/minirt/lib/mlx"
+    - "-I/home/joaopedrorodrigues/42/minirt/lib/libft"
+    - "-I/home/joaopedrorodrigues/42/minirt/mandatory/inc"
+    - "-I/home/joaopedrorodrigues/42/minirt/bonus/inc"
+    - "-Wall"
+    - "-Wextra"
+    - "-Werror"

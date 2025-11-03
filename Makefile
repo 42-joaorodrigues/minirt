@@ -6,7 +6,7 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/02 15:57:33 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/03 20:15:28 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,17 @@ LIBFTL	= -Llib/libft -lft
 
 # bonus files
 BINC	= -I bonus/inc
-BSRC	= 
+BSRC	= main_bonus.c \
+		  mlx_helper_bonus.c
+
+BPARSER	= parser_bonus.c \
+		  parse_elements_bonus.c \
+		  parse_objects_bonus.c \
+		  parse_utils_bonus.c \
+		  parse_validation_bonus.c
+BPARSER	:= $(addprefix parser/, $(BPARSER))
+
+BSRC	+= $(BPARSER)
 BSRC	:= $(addprefix bonus/src/, $(BSRC))
 BOBJ	= $(BSRC:%.c=obj/%.o)
 

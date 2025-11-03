@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_split.c                                       :+:      :+:    :+:   */
+/*   types_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/19 00:18:11 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/10/25 16:53:57 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/11/03 18:20:44 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/11/03 18:21:12 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef TYPES_BONUS_H
+#define TYPES_BONUS_H
 
-void	free_split(char **split)
+typedef struct s_vec3
 {
-	int	i;
+	double			x;
+	double			y;
+	double			z;
+}					t_vec3;
 
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-		free(split[i++]);
-	free(split);
-}
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_color;
+
+#endif

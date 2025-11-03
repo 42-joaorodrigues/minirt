@@ -6,15 +6,17 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/01 18:51:11 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/03 18:04:49 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libft.a
 FLAGS		= -Wall -Wextra -Werror
 
-SRC			= atois.c \
-			  ft_split.c free_split.c\
+SRC			= ft_atoi_valid.c \
+			  ft_stod_valid.c \
+			  ft_error.c \
+			  ft_split.c ft_split_util.c\
 			  gnl.c gnl_util.c \
 		      int_util.c \
 			  str_util.c
