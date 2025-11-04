@@ -6,7 +6,7 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/03 20:15:28 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/04 13:30:33 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ LIBFTL	= -Llib/libft -lft
 # bonus files
 BINC	= -I bonus/inc
 BSRC	= main_bonus.c \
-		  mlx_helper_bonus.c
+		  mlx_helper_bonus.c \
+		  keyhook_bonus.c \
+		  render/render_bonus.c
 
 BPARSER	= parser_bonus.c \
 		  parse_elements_bonus.c \

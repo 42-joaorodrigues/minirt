@@ -6,11 +6,10 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:55:23 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 20:16:14 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:16:11 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "mlx_helper_bonus.h"
 #include <stdlib.h>
 

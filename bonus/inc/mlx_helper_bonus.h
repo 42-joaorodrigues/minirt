@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:51:53 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 20:14:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/04 14:06:29 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define MLX_HELPER_BONUS_H
 
 # include "mlx.h"
+
+# define ESC_KEY 65307
 
 typedef struct s_img
 {
