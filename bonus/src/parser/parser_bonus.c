@@ -6,15 +6,15 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:01:22 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 20:25:15 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:38:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_int_bonus.h"
 #include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+#include "parser_int_bonus.h"
 #include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 static void	init_scene(t_scene *scene)
 {

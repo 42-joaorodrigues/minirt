@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:10:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 19:05:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:44:45 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,30 @@ static t_color	invert_color(t_color c)
 	return (result);
 }
 
-t_color	get_pattern_color(t_hit *hit)
+static void	compute_plane_pattern_uv(t_hit *hit, double *u, double *v)
 {
-	double	u;
-	double	v;
-	int		pattern_u;
-	int		pattern_v;
+	*u = hit->point.x * hit->object->material.pat_scale;
+	*v = hit->point.z * hit->object->material.pat_scale;
+}
+
+static void	compute_sphere_pattern_uv(t_hit *hit, double *u, double *v)
+{
 	t_vec3	local_point;
 	double	theta;
 	double	phi;
+
+	local_point = vec3_sub(hit->point, hit->object->shape.sphere.center);
+	local_point = vec3_normalize(local_point);
+	theta = atan2(local_point.z, local_point.x);
+	phi = acos(local_point.y);
+	*u = theta / (2 * M_PI) * hit->object->material.pat_scale;
+	*v = phi / M_PI * hit->object->material.pat_scale;
+}
+
+t_color	get_pattern_color(t_hit *hit)
+{
+	double	uv[2];
+	int		pattern[2];
 	t_color	base_color;
 
 	if (hit->object->material.has_texture)
@@ -42,24 +57,14 @@ t_color	get_pattern_color(t_hit *hit)
 	if (hit->object->material.pattern == PATTERN_NONE)
 		return (base_color);
 	if (hit->object->type == OBJ_PLANE)
-	{
-		u = hit->point.x * hit->object->material.pat_scale;
-		v = hit->point.z * hit->object->material.pat_scale;
-	}
+		compute_plane_pattern_uv(hit, &uv[0], &uv[1]);
 	else if (hit->object->type == OBJ_SPHERE)
-	{
-		local_point = vec3_sub(hit->point, hit->object->shape.sphere.center);
-		local_point = vec3_normalize(local_point);
-		theta = atan2(local_point.z, local_point.x);
-		phi = acos(local_point.y);
-		u = theta / (2 * M_PI) * hit->object->material.pat_scale;
-		v = phi / M_PI * hit->object->material.pat_scale;
-	}
+		compute_sphere_pattern_uv(hit, &uv[0], &uv[1]);
 	else
 		return (base_color);
-	pattern_u = (int)floor(u);
-	pattern_v = (int)floor(v);
-	if (((pattern_u + pattern_v) % hit->object->material.pat_type) == 0)
+	pattern[0] = (int)floor(uv[0]);
+	pattern[1] = (int)floor(uv[1]);
+	if (((pattern[0] + pattern[1]) % hit->object->material.pat_type) == 0)
 		return (base_color);
 	return (invert_color(base_color));
 }

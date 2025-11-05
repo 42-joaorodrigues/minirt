@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 19:05:23 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:34:42 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 static char	*dup_str(const char *s)
 {
-	char    *res;
-	size_t  len;
-	size_t  i;
+	char	*res;
+	size_t	len;
+	size_t	i;
 
 	if (!s)
 		return (NULL);
@@ -46,8 +46,8 @@ static int	parse_pattern_option(char *value, t_material *mat)
 		return (0);
 	}
 	result = 1;
-	if (!ft_stod_valid(parts[0], &mat->pat_scale)
-		|| !ft_atoi_valid(parts[1], &mat->pat_type))
+	if (!ft_stod_valid(parts[0], &mat->pat_scale) || !ft_atoi_valid(parts[1],
+			&mat->pat_type))
 		result = 0;
 	else
 		mat->pattern = PATTERN_CHECKER;
@@ -57,8 +57,8 @@ static int	parse_pattern_option(char *value, t_material *mat)
 
 static int	parse_bump_option(char *value, t_material *mat)
 {
-	char    **parts;
-	int     result;
+	char	**parts;
+	int		result;
 
 	parts = ft_split(value, ",");
 	if (!parts || !parts[0])

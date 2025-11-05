@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:30:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 16:18:49 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:34:58 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "vec3_bonus.h"
 #include <math.h>
 
-int	intersect_plane(t_ray *ray, t_plane *plane, double *t);
+int			intersect_plane(t_ray *ray, t_plane *plane, double *t);
 
 static int	check_cone_base(t_ray *ray, t_cone *cone, double *t)
 {
@@ -24,8 +24,8 @@ static int	check_cone_base(t_ray *ray, t_cone *cone, double *t)
 	t_vec3	to_hit;
 	double	dist_sq;
 
-	base_center = vec3_add(cone->center, vec3_scale(cone->axis,
-				cone->height / 2));
+	base_center = vec3_add(cone->center, vec3_scale(cone->axis, cone->height
+				/ 2));
 	if (intersect_plane(ray, &(t_plane){base_center, cone->axis}, &t_base))
 	{
 		hit_point = vec3_add(ray->origin, vec3_scale(ray->direction, t_base));
@@ -53,16 +53,15 @@ static void	init_cone_vars(t_ray *ray, t_cone *cone, t_cyl_vars *v)
 	tan_sq = pow(cone->diameter / (2.0 * cone->height), 2);
 	dv = vec3_dot(ray->direction, cone->axis);
 	co_v = vec3_dot(v->oc, cone->axis);
-	v->abc[0] = vec3_dot(ray->direction, ray->direction)
-		- (1 + tan_sq) * dv * dv;
-	v->abc[1] = 2.0 * (vec3_dot(ray->direction, v->oc)
-			- (1 + tan_sq) * dv * co_v);
-	v->abc[2] = vec3_dot(v->oc, v->oc)
-		- (1 + tan_sq) * co_v * co_v;
+	v->abc[0] = vec3_dot(ray->direction, ray->direction) - (1 + tan_sq) * dv
+		* dv;
+	v->abc[1] = 2.0 * (vec3_dot(ray->direction, v->oc) - (1 + tan_sq) * dv
+			* co_v);
+	v->abc[2] = vec3_dot(v->oc, v->oc) - (1 + tan_sq) * co_v * co_v;
 }
 
-static int	check_body_hit_cone(t_cone *cone, t_ray *ray,
-				t_cyl_vars *v, double *t)
+static int	check_body_hit_cone(t_cone *cone, t_ray *ray, t_cyl_vars *v,
+		double *t)
 {
 	t_vec3	hit;
 	double	m;

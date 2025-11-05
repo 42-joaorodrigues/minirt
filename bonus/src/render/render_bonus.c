@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:48:28 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 18:25:08 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:56:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,35 @@ t_ray	create_ray(t_camera *cam, t_viewport *vp, int xy[2], int dimensions[2])
 	return (ray);
 }
 
+static void	render_pixel(t_scene *scene, t_mlx *mlx, t_viewport *vp, int xy[2])
+{
+	t_ray	ray;
+	t_hit	hit;
+	t_color	color;
+
+	ray = create_ray(&scene->camera, vp, (int [2]){xy[0], xy[1]},
+			(int [2]){mlx->win_width, mlx->win_height});
+	hit = find_closest_hit(&ray, scene);
+	if (hit.hit)
+	{
+		color = calculate_lighting(scene, &hit, scene->camera.pos, mlx->ptr);
+		set_pixel(&mlx->img, xy[0], xy[1], color_to_int(color));
+	}
+}
+
 void	render_scene(t_scene *scene, t_mlx *mlx)
 {
 	t_viewport	vp;
-	t_ray		ray;
-	t_hit		hit;
-	t_color		color;
-	int			x;
-	int			y;
+	int			xy[2];
 
 	vp = init_viewport(&scene->camera, mlx->win_width, mlx->win_height);
 	ft_init_mlx_img_fullscreen(mlx);
-	y = -1;
-	while (++y < mlx->win_height)
+	xy[1] = -1;
+	while (++xy[1] < mlx->win_height)
 	{
-		x = -1;
-		while (++x < mlx->win_width)
-		{
-			ray = create_ray(&scene->camera, &vp, (int[2]){x, y},
-					(int[2]){mlx->win_width, mlx->win_height});
-			hit = find_closest_hit(&ray, scene);
-			if (hit.hit)
-			{
-				color = calculate_lighting(scene, &hit, scene->camera.pos,
-						mlx->ptr);
-				set_pixel(&mlx->img, x, y, color_to_int(color));
-			}
-		}
+		xy[0] = -1;
+		while (++xy[0] < mlx->win_width)
+			render_pixel(scene, mlx, &vp, xy);
 	}
 	ft_mlx_put_img_clean(mlx);
 }

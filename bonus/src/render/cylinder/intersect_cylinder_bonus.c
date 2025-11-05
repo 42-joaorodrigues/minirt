@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 15:58:36 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:35:10 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "vec3_bonus.h"
 #include <math.h>
 
-int	intersect_plane(t_ray *ray, t_plane *plane, double *t);
+int			intersect_plane(t_ray *ray, t_plane *plane, double *t);
 
 static int	check_cap(t_ray *ray, t_vec3 cap_center, t_cylinder *cyl, double *t)
 {
@@ -28,8 +28,7 @@ static int	check_cap(t_ray *ray, t_vec3 cap_center, t_cylinder *cyl, double *t)
 		hit_point = vec3_add(ray->origin, vec3_scale(ray->direction, t_cap));
 		to_hit = vec3_sub(hit_point, cap_center);
 		dist_sq = vec3_dot(to_hit, to_hit);
-		if (dist_sq <= (cyl->diameter / 2) * (cyl->diameter / 2)
-			&& t_cap < *t)
+		if (dist_sq <= (cyl->diameter / 2) * (cyl->diameter / 2) && t_cap < *t)
 		{
 			*t = t_cap;
 			return (1);
@@ -44,11 +43,9 @@ static int	check_cylinder_caps(t_ray *ray, t_cylinder *cyl, double *t)
 	int		hit;
 
 	hit = 0;
-	cap_center = vec3_add(cyl->center, vec3_scale(cyl->axis,
-				cyl->height / 2));
+	cap_center = vec3_add(cyl->center, vec3_scale(cyl->axis, cyl->height / 2));
 	hit |= check_cap(ray, cap_center, cyl, t);
-	cap_center = vec3_sub(cyl->center, vec3_scale(cyl->axis,
-				cyl->height / 2));
+	cap_center = vec3_sub(cyl->center, vec3_scale(cyl->axis, cyl->height / 2));
 	hit |= check_cap(ray, cap_center, cyl, t);
 	return (hit || (*t != INFINITY));
 }
@@ -58,8 +55,8 @@ static void	init_cylinder_vars(t_ray *ray, t_cylinder *cyl, t_cyl_vars *v)
 	v->oc = vec3_sub(ray->origin, cyl->center);
 	v->d_proj = vec3_sub(ray->direction, vec3_scale(cyl->axis,
 				vec3_dot(ray->direction, cyl->axis)));
-	v->oc_proj = vec3_sub(v->oc, vec3_scale(cyl->axis,
-				vec3_dot(v->oc, cyl->axis)));
+	v->oc_proj = vec3_sub(v->oc, vec3_scale(cyl->axis, vec3_dot(v->oc,
+					cyl->axis)));
 	v->abc[0] = vec3_dot(v->d_proj, v->d_proj);
 	v->abc[1] = 2.0 * vec3_dot(v->d_proj, v->oc_proj);
 	v->abc[2] = vec3_dot(v->oc_proj, v->oc_proj) - pow(cyl->diameter / 2, 2);

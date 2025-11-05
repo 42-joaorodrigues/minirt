@@ -6,15 +6,15 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:22:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 19:05:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:34:26 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_BONUS_H
 # define OBJECT_BONUS_H
 
-#include "vec3_bonus.h"
-#include "color_bonus.h"
+# include "color_bonus.h"
+# include "vec3_bonus.h"
 
 typedef enum e_obj_type
 {

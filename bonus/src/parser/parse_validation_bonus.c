@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:30:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 19:59:40 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:34:47 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	is_valid_normalized(t_vec3 vec)
 
 int	is_valid_color(t_color color)
 {
-	if (color.r < 0 || color.r > 255
-		|| color.g < 0 || color.g > 255
+	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255
 		|| color.b < 0 || color.b > 255)
 		return (0);
 	return (1);

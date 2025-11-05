@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:35:53 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 17:02:35 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:00:19 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,9 @@ int	ft_stod_valid(char *str, double *value)
 		return (0);
 	while (*str >= '0' && *str <= '9')
 		result = result * 10.0 + (*str++ - '0');
-	if (*str == '.')
-	{
-		str++;
+	if (*str == '.' && str++)
 		if (!parse_decimal(&str, &result))
 			return (0);
-	}
 	str = parse_exponent(str, &exp_val);
 	if (!str || !is_valid_end(*str))
 		return (0);

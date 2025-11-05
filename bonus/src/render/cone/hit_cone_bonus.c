@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:35:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 16:19:04 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:34:54 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ void	process_cone_hit(t_ray *ray, t_object *obj, double t, t_hit *closest)
 	closest->t = t;
 	closest->object = obj;
 	closest->point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
-	closest->normal = calculate_cone_normal(closest->point,
-			&obj->shape.cone);
+	closest->normal = calculate_cone_normal(closest->point, &obj->shape.cone);
 }

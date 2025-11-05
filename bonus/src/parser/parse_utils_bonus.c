@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:25:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 17:29:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 22:44:44 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,28 @@ int	parse_vec3(char *str, t_vec3 *vec)
 	return (result);
 }
 
+static int	parse_rgb_values(char **rgb, t_color *color)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	if (!ft_atoi_valid(rgb[0], &r) || !ft_atoi_valid(rgb[1], &g)
+		|| !ft_atoi_valid(rgb[2], &b))
+		return (0);
+	color->r = r;
+	color->g = g;
+	color->b = b;
+	if (!is_valid_color(*color))
+		return (0);
+	return (1);
+}
+
 int	parse_color(char *str, t_color *color)
 {
 	char	**rgb;
 	char	*semicolon;
 	int		result;
-	int		r;
-	int		g;
-	int		b;
 
 	semicolon = ft_strchr(str, ';');
 	if (semicolon)
@@ -50,18 +64,7 @@ int	parse_color(char *str, t_color *color)
 		free_split(rgb);
 		return (0);
 	}
-	result = 1;
-	if (!ft_atoi_valid(rgb[0], &r) || !ft_atoi_valid(rgb[1], &g)
-		|| !ft_atoi_valid(rgb[2], &b))
-		result = 0;
-	else
-	{
-		color->r = r;
-		color->g = g;
-		color->b = b;
-		if (!is_valid_color(*color))
-			result = 0;
-	}
+	result = parse_rgb_values(rgb, color);
 	free_split(rgb);
 	return (result);
 }
