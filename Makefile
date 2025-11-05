@@ -6,7 +6,7 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/05 16:14:26 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/05 16:28:23 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ BNAME	= miniRT_bonus
 
 CC		= cc
 FLAGS	= -Wall -Wextra -Werror \
+		  -O3 -march=native -ffast-math \
 		  -Wno-incompatible-pointer-types
 
 # libs
