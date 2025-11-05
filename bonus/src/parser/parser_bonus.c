@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:01:22 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 18:30:44 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:25:15 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	parse_line(char *line, t_scene *scene)
 	if (trimmed[0] == 'c' && trimmed[1] == 'o' && (trimmed[2] == ' '
 			|| trimmed[2] == '\t'))
 		return (parse_cone(trimmed, scene));
-	return (ft_puterr("Invalid scene configuration"));
+	return (ft_puterr("Invalid scene line"));
 }
 
 static char	**read_file(char *filepath)

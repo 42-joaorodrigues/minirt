@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:20:16 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 18:31:46 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:20:48 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "object_bonus.h"
 
 # define MAX_LIGHTS 10
-# define MAX_OBJECTS 100
+# define MAX_OBJECTS 1000
 
 typedef struct s_ambient
 {

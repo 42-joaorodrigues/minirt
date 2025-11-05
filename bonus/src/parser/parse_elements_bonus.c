@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:15:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 18:30:15 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 20:24:01 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ int	parse_ambient(char *line, t_scene *scene)
 	if (count_split(params) != 3)
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Ambient params count"));
 	}
 	if (!ft_stod_valid(params[1], &scene->ambient.ratio)
 		|| !is_valid_range(scene->ambient.ratio, 0.0, 1.0))
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Ambient ratio"));
 	}
 	if (!parse_color(params[2], &scene->ambient.color))
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid ambient color"));
 	}
 	scene->ambient.set = 1;
 	free_split(params);
@@ -51,7 +51,7 @@ int	parse_camera(char *line, t_scene *scene)
 	if (count_split(params) != 4)
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Camera params count"));
 	}
 	if (!parse_vec3(params[1], &scene->camera.pos) || !parse_vec3(params[2],
 			&scene->camera.orient) || !is_valid_normalized(scene->camera.orient)
@@ -59,8 +59,9 @@ int	parse_camera(char *line, t_scene *scene)
 		|| !is_valid_range(scene->camera.fov, 0, 180))
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Camera params"));
 	}
+	scene->camera.orient = vec3_normalize(scene->camera.orient);
 	scene->camera.set = 1;
 	free_split(params);
 	return (0);
@@ -77,7 +78,7 @@ int	parse_light(char *line, t_scene *scene)
 	if (count_split(params) != 4)
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Lights param count"));
 	}
 	light = &scene->lights[scene->light_count];
 	if (!parse_vec3(params[1], &light->pos) || !ft_stod_valid(params[2],
@@ -85,7 +86,7 @@ int	parse_light(char *line, t_scene *scene)
 		|| !parse_color(params[3], &light->color))
 	{
 		free_split(params);
-		return (ft_puterr("Invalid scene configuration"));
+		return (ft_puterr("Invalid Lights param"));
 	}
 	scene->light_count++;
 	free_split(params);

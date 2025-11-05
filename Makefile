@@ -6,7 +6,7 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/05 17:27:42 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/05 19:05:22 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,10 @@ BRENDER	= render_bonus.c \
 		  lighting_bonus.c \
 		  find_closest_hit_bonus.c \
 		  pattern_bonus.c \
+		  texture_bonus.c \
+		  bump_bonus.c \
+		  bump_normal_bonus.c \
+		  bump_preload_bonus.c \
 		  cylinder/hit_cylinder_bonus.c \
 		  cylinder/intersect_cylinder_bonus.c \
 		  plane/hit_plane_bonus.c \

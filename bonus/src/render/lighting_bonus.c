@@ -6,12 +6,13 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:54:43 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 17:52:01 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:00:42 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include <math.h>
+#include <stddef.h>
 
 static int	is_in_shadow(t_scene *scene, t_vec3 hit_point, t_vec3 light_pos)
 {
@@ -80,16 +81,21 @@ t_color	calculate_specular(t_light *light, t_vec3 hit_point, t_vec3 normal,
 	return (specular_contribution);
 }
 
-t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos)
+t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos,
+		void *mlx)
 {
 	t_color	final_color;
 	t_color	ambient;
 	t_color	diffuse;
 	t_color	specular;
 	t_color	object_color;
+	t_vec3	bumped_normal;
 	int		i;
 
 	object_color = get_pattern_color(hit);
+	bumped_normal = hit->normal;
+	if (hit->object->material.has_bump && hit->object->material.bump_img)
+		bumped_normal = apply_bump_map(mlx, hit);
 	ambient = calculate_ambient(&scene->ambient, object_color);
 	final_color = ambient;
 	i = 0;
@@ -98,9 +104,9 @@ t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos)
 		if (!is_in_shadow(scene, hit->point, scene->lights[i].pos))
 		{
 			diffuse = calculate_diffuse(&scene->lights[i], hit->point,
-					hit->normal, object_color);
+					bumped_normal, object_color);
 			specular = calculate_specular(&scene->lights[i], hit->point,
-					hit->normal, &hit->object->material, cam_pos);
+					bumped_normal, &hit->object->material, cam_pos);
 			final_color = color_add(final_color, diffuse);
 			final_color = color_add(final_color, specular);
 		}

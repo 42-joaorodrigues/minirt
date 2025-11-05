@@ -6,25 +6,15 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:30:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 18:30:26 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:59:40 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_int_bonus.h"
-#include <math.h>
 
 int	is_valid_normalized(t_vec3 vec)
 {
-	double	magnitude;
-	double	tolerance;
-
-	tolerance = 0.01;
-	magnitude = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
-	if (fabs(magnitude - 1.0) > tolerance)
-		return (0);
-	if (vec.x < -1.0 || vec.x > 1.0
-		|| vec.y < -1.0 || vec.y > 1.0
-		|| vec.z < -1.0 || vec.z > 1.0)
+	if (vec.x == 0.0 && vec.y == 0.0 && vec.z == 0.0)
 		return (0);
 	return (1);
 }

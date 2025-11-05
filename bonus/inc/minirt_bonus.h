@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:28:29 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 17:35:53 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:05:22 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ void	keyhook(t_mlx *mlx);
 
 /* Render */
 void	render_scene(t_scene *scene, t_mlx *mlx);
-t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos);
+t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos,
+			void *mlx);
 t_hit	find_closest_hit(t_ray *ray, t_scene *scene);
 t_color	get_pattern_color(t_hit *hit);
+t_color	get_texture_color(t_hit *hit);
 
 /* Sphere */
 int		intersect_sphere(t_ray *ray, t_sphere *sphere, double *t);
@@ -82,5 +84,11 @@ void	process_cylinder_hit(t_ray *ray, t_object *obj, double t,
 /* Cone */
 int		intersect_cone(t_ray *ray, t_cone *cone, double *t);
 void	process_cone_hit(t_ray *ray, t_object *obj, double t, t_hit *closest);
+
+/* Bump map */
+t_vec3	apply_bump_map(void *mlx, t_hit *hit);
+t_vec3	perturb_normal(t_vec3 normal, double height[3], double scale);
+void	preload_bump_textures(t_scene *scene, void *mlx);
+void	cleanup_bump_textures(t_scene *scene, void *mlx);
 
 #endif

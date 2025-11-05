@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:22:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 17:27:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:05:22 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ typedef struct s_material
 	t_pattern		pattern;
 	double			pat_scale;
 	int				pat_type;
+	/* bump map texture (XPM) */
+	char			*bump_path;
+	double			bump_scale;
+	int				has_bump;
+	void			*bump_img;
+	int				bump_width;
+	int				bump_height;
+	/* color texture (XPM) */
+	char			*texture_path;
+	int				has_texture;
+	void			*texture_img;
+	int				texture_width;
+	int				texture_height;
 }					t_material;
 
 typedef struct s_object

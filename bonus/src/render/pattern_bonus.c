@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:10:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 17:31:58 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:05:23 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,14 @@ t_color	get_pattern_color(t_hit *hit)
 	t_vec3	local_point;
 	double	theta;
 	double	phi;
+	t_color	base_color;
 
+	if (hit->object->material.has_texture)
+		base_color = get_texture_color(hit);
+	else
+		base_color = hit->object->material.color;
 	if (hit->object->material.pattern == PATTERN_NONE)
-		return (hit->object->material.color);
+		return (base_color);
 	if (hit->object->type == OBJ_PLANE)
 	{
 		u = hit->point.x * hit->object->material.pat_scale;
@@ -51,10 +56,10 @@ t_color	get_pattern_color(t_hit *hit)
 		v = phi / M_PI * hit->object->material.pat_scale;
 	}
 	else
-		return (hit->object->material.color);
+		return (base_color);
 	pattern_u = (int)floor(u);
 	pattern_v = (int)floor(v);
 	if (((pattern_u + pattern_v) % hit->object->material.pat_type) == 0)
-		return (hit->object->material.color);
-	return (invert_color(hit->object->material.color));
+		return (base_color);
+	return (invert_color(base_color));
 }

@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 13:00:45 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/04 14:16:29 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:00:42 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int	main(int ac, char **av)
 	handle_args(ac, av);
 	parse_scene(av[1], &scene);
 	ft_init_mlx(&mlx, WIDHT, HEIGHT, "miniRT");
+	preload_bump_textures(&scene, mlx.ptr);
 	render_scene(&scene, &mlx);
 	keyhook(&mlx);
 	mlx_loop(mlx.ptr);
+	cleanup_bump_textures(&scene, mlx.ptr);
 	ft_cleanup_mlx(&mlx);
 	return (0);
 }
