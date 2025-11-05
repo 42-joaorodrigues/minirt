@@ -6,7 +6,7 @@
 #    By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 14:08:21 by joao-alm          #+#    #+#              #
-#    Updated: 2025/11/04 13:30:33 by joao-alm         ###   ########.fr        #
+#    Updated: 2025/11/05 16:14:26 by joao-alm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,7 @@ LIBFTL	= -Llib/libft -lft
 
 # bonus files
 BINC	= -I bonus/inc
-BSRC	= main_bonus.c \
-		  mlx_helper_bonus.c \
-		  keyhook_bonus.c \
-		  render/render_bonus.c
+BSRC	= main_bonus.c
 
 BPARSER	= parser_bonus.c \
 		  parse_elements_bonus.c \
@@ -46,7 +43,26 @@ BPARSER	= parser_bonus.c \
 		  parse_validation_bonus.c
 BPARSER	:= $(addprefix parser/, $(BPARSER))
 
-BSRC	+= $(BPARSER)
+BRENDER	= render_bonus.c \
+		  lighting_bonus.c \
+		  find_closest_hit_bonus.c \
+		  cylinder/hit_cylinder_bonus.c \
+		  cylinder/intersect_cylinder_bonus.c \
+		  plane/hit_plane_bonus.c \
+		  plane/intersect_plane_bonus.c \
+		  sphere/hit_sphere_bonus.c \
+		  sphere/intersect_sphere_bonus.c \
+		  cone/hit_cone_bonus.c \
+		  cone/intersect_cone_bonus.c
+BRENDER	:= $(addprefix render/, $(BRENDER))
+
+BUTIL	= color_bonus.c \
+		  mlx_helper_bonus.c \
+		  vec3_bonus.c \
+		  keyhook_bonus.c
+BUTIL	:= $(addprefix util/, $(BUTIL))
+
+BSRC	+= $(BPARSER) $(BRENDER) $(BUTIL)
 BSRC	:= $(addprefix bonus/src/, $(BSRC))
 BOBJ	= $(BSRC:%.c=obj/%.o)
 

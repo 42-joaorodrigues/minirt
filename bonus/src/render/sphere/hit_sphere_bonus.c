@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types_bonus.h                                      :+:      :+:    :+:   */
+/*   hit_sphere_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/03 18:20:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/03 18:21:12 by joao-alm         ###   ########.fr       */
+/*   Created: 2025/11/05 16:05:00 by joao-alm          #+#    #+#             */
+/*   Updated: 2025/11/05 15:57:00 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_BONUS_H
-#define TYPES_BONUS_H
+#include "minirt_bonus.h"
+#include "vec3_bonus.h"
 
-typedef struct s_vec3
+void	process_sphere_hit(t_ray *ray, t_object *obj, double t, t_hit *closest)
 {
-	double			x;
-	double			y;
-	double			z;
-}					t_vec3;
-
-typedef struct s_color
-{
-	int				r;
-	int				g;
-	int				b;
-}					t_color;
-
-#endif
+	closest->hit = 1;
+	closest->t = t;
+	closest->object = obj;
+	closest->point = vec3_add(ray->origin, vec3_scale(ray->direction, t));
+	closest->normal = vec3_sub(closest->point, obj->shape.sphere.center);
+	closest->normal = vec3_normalize(closest->normal);
+}
