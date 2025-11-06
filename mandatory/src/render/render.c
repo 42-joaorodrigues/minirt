@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:48:28 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:47:24 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/06 13:58:41 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ t_viewport	init_viewport(t_camera *cam, int width, int height)
 {
 	t_viewport	vp;
 	double		aspect_ratio;
-	double		h;
 	t_vec3		cam_vec[3];
 	double		theta;
 
 	aspect_ratio = (double)width / height;
 	theta = cam->fov * M_PI / 180.0;
-	h = tan(theta / 2.0);
 	vp.distance = 1.0;
-	vp.height = 2.0 * h * vp.distance;
-	vp.width = vp.height * aspect_ratio;
+	vp.width = 2.0 * tan(theta / 2) * vp.distance;
+	vp.height = vp.width / aspect_ratio;
 	cam_vec[0] = vec3_normalize(cam->orient);
 	cam_vec[1] = vec3_normalize(vec3_cross(vec3_new(0, 1, 0), cam_vec[0]));
 	cam_vec[2] = vec3_cross(cam_vec[0], cam_vec[1]);

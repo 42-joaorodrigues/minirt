@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:10:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:44:45 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/05 23:13:53 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_color	get_pattern_color(t_hit *hit)
 		base_color = get_texture_color(hit);
 	else
 		base_color = hit->object->material.color;
-	if (hit->object->material.pattern == PATTERN_NONE)
+	if (hit->object->material.pattern == PATTERN_NONE
+		|| hit->object->material.pat_type == 0)
 		return (base_color);
 	if (hit->object->type == OBJ_PLANE)
 		compute_plane_pattern_uv(hit, &uv[0], &uv[1]);

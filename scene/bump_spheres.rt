@@ -1,7 +1,7 @@
 # Bump mapping comparison - Multiple spheres with different bump scales
 
 A 0.3 255,255,255
-C 0,3,15 0,-0.2,-1 70
+C 0,3,15 0,-0.2,-1 90
 L 10,10,10 0.7 255,255,255
 
 # Row 1: Earth bumps with different scales
@@ -12,11 +12,11 @@ sp 4,3,0 4 100,150,200 bum:imgs/earthbump1k.xpm,50.0
 sp 8,3,0 4 100,150,200 bum:imgs/earthbump1k.xpm,100.0
 
 # Row 2: Moon bumps with different scales
-sp -8,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,5.0
-sp -4,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,10.0
-sp 0,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,25.0
-sp 4,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,50.0
-sp 8,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,100.0
+sp -8,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,0.5
+sp -4,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,1
+sp 0,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,2.5
+sp 4,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,5
+sp 8,-1,0 4 180,180,180 bum:imgs/moonbump1k.xpm,10
 
 # Ground plane
 pl 0,-5,0 0,1,0 50,50,50
