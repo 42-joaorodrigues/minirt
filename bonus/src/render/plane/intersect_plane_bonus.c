@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 15:55:09 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include "vec3_bonus.h"
 #include <math.h>
 
+/*
+** Ray-plane intersection using geometric formula.
+** Returns 0 if ray is parallel to plane or intersection is behind ray origin.
+*/
 int	intersect_plane(t_ray *ray, t_plane *plane, double *t)
 {
 	double	denom;

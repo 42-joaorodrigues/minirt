@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:28:29 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:31:22 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:10:44 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,39 @@
 
 typedef struct s_ray
 {
-	t_vec3		origin; // Camera position
-	t_vec3		direction; // Normalized direction vector
+	t_vec3		origin;		// Camera position
+	t_vec3		direction;	// Normalized direction vector
 }				t_ray;
 
 typedef struct s_hit
 {
-	int			hit; // Did we hit something?
-	double		t; // Distance along ray
-	t_vec3		point; // Hit point in world space
-	t_vec3		normal; // Surface normal at hit point
-	t_object	*object; // Which object was hit
+	int			hit;		// Did we hit something?
+	double		t;			// Distance along ray
+	t_vec3		point;		// Hit point in world space
+	t_vec3		normal;		// Surface normal at hit point
+	t_object	*object;	// Which object was hit
 }				t_hit;
 
+/* Image plane for ray generation */
 typedef struct s_viewport
 {
-	double		width;
-	double		height;
-	double		distance;
-	t_vec3		horizontal;
-	t_vec3		vertical;
-	t_vec3		lower_left;
+	double		width;			/* Physical width in world units */
+	double		height;			/* Physical height in world units */
+	double		distance;		/* Distance from camera to plane center */
+	t_vec3		horizontal;		/* Full width vector (right * width) */
+	t_vec3		vertical;		/* Full height vector (up * height) */
+	t_vec3		lower_left;		/* World position of lower-left corner */
 }				t_viewport;
 
+/* Helper struct for cylinder intersection calculations */
 typedef struct s_cyl_vars
 {
-	t_vec3		oc;
-	t_vec3		d_proj;
-	t_vec3		oc_proj;
-	double		abc[3];
-	double		disc;
-	double		t_vals[2];
+	t_vec3		oc;			/* Origin to cylinder center */
+	t_vec3		d_proj;		/* Ray direction projected onto radial plane */
+	t_vec3		oc_proj;	/* Origin-to-center projected onto radial plane */
+	double		abc[3];		/* Quadratic coefficients [a, b, c] */
+	double		disc;		/* Discriminant */
+	double		t_vals[2];	/* Two intersection distances */
 }				t_cyl_vars;
 
 /* Parser */

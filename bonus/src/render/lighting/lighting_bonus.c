@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:54:43 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:53:36 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <math.h>
 #include <stddef.h>
 
+/*
+** Casts a shadow ray from hit point toward light.
+** Returns 1 if an object blocks the light path.
+*/
 int	is_in_shadow(t_scene *scene, t_vec3 hit_point, t_light *light)
 {
 	t_ray	shadow_ray;

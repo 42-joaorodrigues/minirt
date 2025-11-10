@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:48:28 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/06 14:10:04 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:32 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include "vec3_bonus.h"
 #include <math.h>
 
+/*
+** Initializes the viewport (image plane) based on camera FOV and aspect ratio.
+** Computes camera basis vectors (forward, right, up) to orient the viewport.
+** The viewport is centered at distance 1.0 from camera along forward direction.
+*/
 t_viewport	init_viewport(t_camera *cam, int width, int height)
 {
 	t_viewport	vp;
@@ -42,6 +47,10 @@ t_viewport	init_viewport(t_camera *cam, int width, int height)
 	return (vp);
 }
 
+/*
+** Creates a ray from camera through a specific pixel on the viewport.
+** Maps pixel coordinates (x,y) to normalized coords (u,v) on the image plane.
+*/
 t_ray	create_ray(t_camera *cam, t_viewport *vp, int xy[2], int dimensions[2])
 {
 	t_ray	ray;

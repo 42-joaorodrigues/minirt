@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:05:42 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:31 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "vec3.h"
 #include <math.h>
 
+/*
+** Ray-sphere intersection using quadratic formula.
+** Solves: ||ray.origin + t*ray.direction - sphere.center||^2 = radius^2
+** Returns 1 if hit (and sets t to closest positive intersection), 0 otherwise.
+*/
 int	intersect_sphere(t_ray *ray, t_sphere *sphere, double *t)
 {
 	t_vec3	oc;

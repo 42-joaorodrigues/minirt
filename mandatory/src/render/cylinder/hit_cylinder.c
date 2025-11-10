@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:05:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:06:16 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:32 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "vec3.h"
 #include <math.h>
 
+/*
+** Determines if hit point is on cylinder cap or body surface.
+** For caps: normal is cylinder axis direction.
+** For body: normal is perpendicular to axis, pointing outward.
+*/
 static void	calculate_cylinder_normal(t_object *obj, t_hit *closest)
 {
 	t_vec3	to_center;

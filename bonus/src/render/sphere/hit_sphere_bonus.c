@@ -6,13 +6,17 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:05:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 15:57:00 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 #include "vec3_bonus.h"
 
+/*
+** Records sphere hit information.
+** Normal points outward from sphere center.
+*/
 void	process_sphere_hit(t_ray *ray, t_object *obj, double t, t_hit *closest)
 {
 	closest->hit = 1;

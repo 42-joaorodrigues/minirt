@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:00:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:35:10 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/11/10 16:08:33 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 
 int			intersect_plane(t_ray *ray, t_plane *plane, double *t);
 
+/*
+** Checks if ray intersects a cylinder cap (circular disk at end).
+** Cap is treated as a plane with radius check.
+*/
 static int	check_cap(t_ray *ray, t_vec3 cap_center, t_cylinder *cyl, double *t)
 {
 	double	t_cap;
@@ -37,6 +41,9 @@ static int	check_cap(t_ray *ray, t_vec3 cap_center, t_cylinder *cyl, double *t)
 	return (0);
 }
 
+/*
+** Tests intersection with both cylinder caps (top and bottom).
+*/
 static int	check_cylinder_caps(t_ray *ray, t_cylinder *cyl, double *t)
 {
 	t_vec3	cap_center;
@@ -50,6 +57,10 @@ static int	check_cylinder_caps(t_ray *ray, t_cylinder *cyl, double *t)
 	return (hit || (*t != INFINITY));
 }
 
+/*
+** Initializes variables for cylinder body intersection.
+** Projects ray and origin onto plane perpendicular to cylinder axis.
+*/
 static void	init_cylinder_vars(t_ray *ray, t_cylinder *cyl, t_cyl_vars *v)
 {
 	v->oc = vec3_sub(ray->origin, cyl->center);
@@ -63,6 +74,10 @@ static void	init_cylinder_vars(t_ray *ray, t_cylinder *cyl, t_cyl_vars *v)
 	v->disc = v->abc[1] * v->abc[1] - 4 * v->abc[0] * v->abc[2];
 }
 
+/*
+** Validates that body intersection points are within cylinder height bounds.
+** Parameter m is the signed distance along cylinder axis from center.
+*/
 static int	check_body_hit(t_ray *ray, t_cylinder *cyl, t_cyl_vars *v,
 		double *t)
 {
@@ -86,6 +101,10 @@ static int	check_body_hit(t_ray *ray, t_cylinder *cyl, t_cyl_vars *v,
 	return (*t != INFINITY);
 }
 
+/*
+** Ray-cylinder intersection.
+** Solves quadratic for infinite cylinder body, then checks height and caps.
+*/
 int	intersect_cylinder(t_ray *ray, t_cylinder *cyl, double *t)
 {
 	t_cyl_vars	v;
