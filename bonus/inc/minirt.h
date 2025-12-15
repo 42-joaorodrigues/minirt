@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt_bonus.h                                     :+:      :+:    :+:   */
+/*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:28:29 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/10 16:10:04 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/15 19:43:48 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_BONUS_H
 # define MINIRT_BONUS_H
 
-# include "mlx_helper_bonus.h"
-# include "scene_bonus.h"
+# include "mlx_helper.h"
+# include "scene.h"
 
 # define WIDHT 1600
 # define HEIGHT 900
@@ -25,8 +25,7 @@ typedef struct s_light_calc
 	t_vec3		hit_point;
 	t_vec3		normal;
 	t_vec3		cam_pos;
-	t_color		object_color;
-	t_material	*mat;
+	t_object	object;
 }	t_light_calc;
 
 typedef struct s_ray

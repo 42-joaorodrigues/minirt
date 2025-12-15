@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_bonus.h                                      :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:20:44 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 14:53:17 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/15 18:37:42 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_BONUS_H
-# define COLOR_BONUS_H
+#ifndef COLOR_H
+# define COLOR_H
 
 typedef struct s_color
 {

@@ -6,92 +6,42 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 18:22:20 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/05 22:34:26 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/15 19:29:58 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECT_BONUS_H
 # define OBJECT_BONUS_H
 
-# include "color_bonus.h"
-# include "vec3_bonus.h"
-
-typedef enum e_obj_type
-{
-	OBJ_SPHERE,
-	OBJ_PLANE,
-	OBJ_CYLINDER,
-	OBJ_CONE
-}					t_obj_type;
-
-typedef enum e_pattern
-{
-	PATTERN_NONE,
-	PATTERN_CHECKER
-}					t_pattern;
-
-typedef struct s_sphere
-{
-	t_vec3			center;
-	double			diameter;
-}					t_sphere;
-
-typedef struct s_plane
-{
-	t_vec3			point;
-	t_vec3			normal;
-}					t_plane;
-
-typedef struct s_cylinder
-{
-	t_vec3			center;
-	t_vec3			axis;
-	double			diameter;
-	double			height;
-}					t_cylinder;
+# include "vec3.h"
 
 typedef struct s_cone
 {
-	t_vec3			center;
-	t_vec3			axis;
-	double			diameter;
-	double			height;
-}					t_cone;
+	t_vec3	center;
+	t_vec3	axis;
+	double	diameter;
+	double	height;
+}			t_cone;
 
-typedef struct s_material
+typedef struct s_phong
 {
-	t_color			color;
-	double			specular;
-	double			shininess;
-	t_pattern		pattern;
-	double			pat_scale;
-	int				pat_type;
-	/* bump map texture (XPM) */
-	char			*bump_path;
-	double			bump_scale;
-	int				has_bump;
-	void			*bump_img;
-	int				bump_width;
-	int				bump_height;
-	/* color texture (XPM) */
-	char			*texture_path;
-	int				has_texture;
-	void			*texture_img;
-	int				texture_width;
-	int				texture_height;
-}					t_material;
+	double	specular;
+	double	shininess;
+}			t_phong;
 
-typedef struct s_object
+typedef struct s_checkboard
 {
-	t_obj_type		type;
-	t_material		material;
-	union			u_shape
-	{
-		t_sphere	sphere;
-		t_plane		plane;
-		t_cylinder	cylinder;
-		t_cone		cone;
-	} shape;
-}					t_object;
+	int		enabled;
+	double	scale;
+}			t_checkboard;
+
+typedef struct s_texture
+{
+	int		enabled;
+	char	*path;
+	void	*img;
+	int		width;
+	int		height;
+}			t_texture;
 
 #endif

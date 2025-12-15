@@ -6,12 +6,12 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:51:53 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/11/04 14:06:29 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/15 19:31:03 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_HELPER_BONUS_H
-# define MLX_HELPER_BONUS_H
+#ifndef MLX_HELPER_H
+# define MLX_HELPER_H
 
 # include "mlx.h"
 
