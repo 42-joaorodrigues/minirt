@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 17:10:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/18 16:24:59 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/18 17:10:55 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ static void	compute_cylinder_pattern_uv(t_hit *hit, double *u, double *v)
 	*v = height * hit->object->check.scale;
 }
 
+/*
+** Applies procedural checkerboard pattern to object surfaces.
+** Computes UV coordinates for each object type and alternates colors.
+*/
 t_color	get_pattern_color(t_hit *hit)
 {
 	double	uv[2];

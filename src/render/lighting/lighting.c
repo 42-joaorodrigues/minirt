@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 14:54:43 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/18 16:24:43 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/18 17:10:55 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ t_color	calc_diff(t_light *light, t_light_calc *params)
 			light_intensity));
 }
 
+/*
+** Computes final pixel color using Phong lighting model.
+** Combines ambient, diffuse, and specular components for each light.
+** Applies bump mapping and shadow calculations.
+*/
 t_color	calculate_lighting(t_scene *scene, t_hit *hit, t_vec3 cam_pos,
 		void *mlx)
 {

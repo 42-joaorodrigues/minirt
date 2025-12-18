@@ -6,7 +6,7 @@
 /*   By: joao-alm <joao-alm@student.42luxembourg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 16:05:00 by joao-alm          #+#    #+#             */
-/*   Updated: 2025/12/18 16:24:36 by joao-alm         ###   ########.fr       */
+/*   Updated: 2025/12/18 17:10:55 by joao-alm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ static void	check_cone(t_ray *ray, t_object *obj, t_hit *closest)
 	}
 }
 
+/*
+** Tests ray intersection with all scene objects.
+** Returns the closest hit along the ray direction.
+*/
 t_hit	find_closest_hit(t_ray *ray, t_scene *scene)
 {
 	t_hit	closest;
