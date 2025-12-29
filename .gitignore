@@ -1,5 +1,11 @@
+# IDE
+.vscode/
+
+# Build
 obj/
 miniRT
 /libft/
 /mlx/
+
+# Cache
 vgcore.*
